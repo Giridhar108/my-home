@@ -24,7 +24,7 @@ jobs:
   #   build:
   #   eslint:
   #     needs: build
-  eslint:
+    eslint:
     # имя для отображения в интерфейсе GitHub
     name: ESLint
     # обязательный параметр, который указывает где будет запущена job: облачный runner, self-hosted и т.д.
@@ -32,7 +32,7 @@ jobs:
     # последовательные задачи (шаги), важно помнить, что переменные окружения не сохраняются
     # между шагами и их нужно пробрасывать, если требуется.
     steps:
-     # указываем action, который будет запущен как часть job
+      # указываем action, который будет запущен как часть job
       # В текущем случае это клонирование репозитория
       - uses: actions/checkout@v2
       # Установка NVM
@@ -46,7 +46,7 @@ jobs:
         # которую NVM будет использовать
         env:
           NODE_VERSION: 14.17.0
-        run: export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use && nvm install
+        run: nvm install
       # Установка зависимостей проекта
       - name: Install dependencies
         run: npm install
