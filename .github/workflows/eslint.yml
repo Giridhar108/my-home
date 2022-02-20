@@ -4,15 +4,6 @@ name: test
 # правила срабатывания - события GitHub, на которые
 # должен срабатывать текущий workflow.
 on: [push]
-  # # push
-  # push:
-  #   # в ветку с именем main. Квадратные скобки нужны для указания
-  #   # нескольких веток, например, [main, developer]
-  #   branches: [main]
-  # # при создании pull request
-  # pull_request:
-  #   # в ветку main
-  #   branches: [main]
 
 # workflow состоит из одной или нескольких job
 # job работают параллельно по умолчанию
@@ -24,9 +15,9 @@ jobs:
   #   build:
   #   eslint:
   #     needs: build
-    eslint:
+  eslint:
     # имя для отображения в интерфейсе GitHub
-    name: ESLint1
+    name: ESLint
     # обязательный параметр, который указывает где будет запущена job: облачный runner, self-hosted и т.д.
     runs-on: ubuntu-latest
     # последовательные задачи (шаги), важно помнить, что переменные окружения не сохраняются
@@ -46,7 +37,7 @@ jobs:
         # которую NVM будет использовать
         env:
           NODE_VERSION: 14.17.0
-        run: nvm install
+        run: export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use && nvm install
       # Установка зависимостей проекта
       - name: Install dependencies
         run: npm install
